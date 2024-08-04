@@ -33,31 +33,47 @@ const AddProducts = () => {
         }
       }
 
+      const handleChange = (e:any) => {
+        const {name, value} = e.target;
+        setFormData({
+            ...formData,
+            [name]:value
+        })
+      }
+
+      const handleSubmit = async (e:any, tipoMov:string) => {
+        e.preventDefault()
+        moveProducts(formData, tipoMov)
+      }
+
     return (
         <div style={{backgroundColor:"white"}}>
             <form>
                 <div>
                     <div style={styles.inputBox}>
                         <label>Produto: </label>
-                        <input type="text" />
+                        <input type="text" name="descricao" value={formData.descricao} onChange={handleChange} />
                     </div>
                     
                     <div style={styles.inputBox}>
                         <label>Saldo: </label>
-                        <input type="text" />
+                        <input type="text" name="saldo" value={formData.saldo} onChange={handleChange} />
                     </div>
 
                     <div style={styles.inputBox}>
                         <label>Responsável: </label>
-                        <input type="text" />
+                        <input type="text" name="solicitante" value={formData.solicitante} onChange={handleChange} />
                     </div>
 
                     <div style={styles.inputBox}>
                         <label>Motivo: </label>
-                        <input type="text" />
+                        <input type="text" name="motivo" value={formData.motivo} onChange={handleChange} />
                     </div>                
                     
                 </div>
+
+                <button onClick={(e) => handleSubmit(e, 'adicao')}>Adicionar</button>
+                <button onClick={(e) => handleSubmit(e, 'remocao')}>Remover</button>
             </form>
         </div>
     )
