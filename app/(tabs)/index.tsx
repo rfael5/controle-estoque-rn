@@ -5,7 +5,7 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { useEffect, useState } from 'react';
-import ProductsTable from './components/ProductsTable';
+import ProductsTable from '../../components/ProductsTable';
 
 export default function HomeScreen() {
 
@@ -19,6 +19,7 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   titleContainer: {
+    backgroundColor:'none',
     marginTop:30,
     padding:15,
     flexDirection: 'row',

@@ -6,7 +6,7 @@ import { ExternalLink } from '@/components/ExternalLink';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import AddProducts from './components/AddProducts';
+import AddProducts from '../../components/AddProducts';
 
 export default function TabTwoScreen() {
   return (

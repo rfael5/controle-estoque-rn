@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'; 
 import { StyleSheet } from 'react-native';
 import { DataTable } from 'react-native-paper';
+import AddProducts from './AddProducts';
 
 const ProductsTable = () => {
 
-    const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([])
+  const [selectedProduct, setSelectedProduct] = useState<any>(null)
 
   const getProducts = async () => {
     try {
@@ -20,32 +22,53 @@ const ProductsTable = () => {
     }
   }
 
-
   useEffect(() => {
     getProducts()
   }, [])
+
+  const selectProduct = (product:any) => {
+    console.log(product)
+    setSelectedProduct(product)
+  }
+
     return (
-        <DataTable style={styles.container}>
+      <div style={styles.tableContainer}>
+          <DataTable style={styles.container}>
              <DataTable.Header style={styles.tableHeader}> 
                 <DataTable.Title>Produto</DataTable.Title> 
                 <DataTable.Title>Saldo</DataTable.Title>
             </DataTable.Header> 
             {data.map((prod:any) => (
                 <DataTable.Row style={styles.tableBody} key={prod.id}>
-                    <DataTable.Cell style={styles.colunaNome}><div>{prod.descricao}</div></DataTable.Cell>
-                    <DataTable.Cell style={styles.colunaSaldo}><div>{`${prod.saldo} UN`}</div></DataTable.Cell>
+                    <DataTable.Cell style={styles.colunaNome}><div>{prod.nomeProduto}</div></DataTable.Cell>
+                    <DataTable.Cell style={styles.colunaSaldo}><div>{`${prod.saldoTotal} UN`}</div></DataTable.Cell>
+                    <DataTable.Cell><button onClick={() => selectProduct(prod)}>Alterar Saldo</button></DataTable.Cell>
                 </DataTable.Row>
             ))}
         </DataTable>
+
+        <div>
+            <AddProducts 
+              produtoSelecionado={selectedProduct}
+              atualizarLista={getProducts}>
+            </AddProducts>          
+        </div>
+
+      </div>
+        
     )
 }
 
 
 export default ProductsTable
 
-const styles = StyleSheet.create({ 
+const styles = StyleSheet.create({
+    tableContainer:{
+      marginBottom:50
+    }, 
     container: { 
-      padding:0
+      padding:0,
+      borderBlockColor:'black'
       //justifyContent:'center', 
     }, 
     tableHeader: { 
