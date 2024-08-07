@@ -7,11 +7,12 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import AddProducts from '../../components/AddProducts';
+import HistoricoMov from '@/components/HistoricoMov';
 
 export default function TabTwoScreen() {
   return (
     <ThemedView>
-      <AddProducts />
+      <HistoricoMov />
     </ThemedView>
   );
 }
